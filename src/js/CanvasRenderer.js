@@ -54,13 +54,37 @@ const Start = async (id) => {
         renderer = document.createElement('video');
         renderer.srcObject = video_stream;
         renderer.muted = true;
+        GetElement('play-icon').src = './icons/media/pause.svg';
+        GetElement('play').title = 'Pause';
         renderer.play();
         ctx = canvas.getContext('2d');
         intervalId = setInterval(() => {
             Update();
         }, 1000 / 60);
+        AddListener({
+            id: 'play',
+            event: 'click',
+            fx: () => {
+                if (isStreaming) {
+                    renderer.pause();
+                    isStreaming = false;
+                    GetElement('play-icon').src = './icons/media/play.svg';
+                    GetElement('play').title = 'Play';
+                } else {
+                    renderer.play();
+                    isStreaming = true;
+                    GetElement('play-icon').src = './icons/media/pause.svg';
+                    GetElement('play').title = 'Pause';
+                }
+            }
+        });
     } catch (e) {
-
+        console.error('Error starting capture:', e);
+        isCapturing = false;
+        isStreaming = false;
+        SetDocumentTitle('Charles');
+        GetElement('play-icon').src = './icons/media/play.svg';
+        GetElement('play').title = 'Play';
     }
 }
 const Update = () => {
