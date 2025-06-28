@@ -20,4 +20,5 @@ const SetInner = (type, id, value) => {
 };
 const SetDocumentTitle = (title) => {
     document.title = title;
+    SetInner('text', 'window-title', title);
 };
