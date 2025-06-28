@@ -123,3 +123,6 @@ body {
 .control-button:hover {
     background-color: var(--tertiary);
 }
+.no-margin {
+    margin: 0 !important;
+}
