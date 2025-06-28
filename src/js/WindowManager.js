@@ -15,16 +15,21 @@ AddListener({
         } else {
             win.maximize();
         }
+        RefreshWindowState();
     }
 });
 AddGlobalListener({
     event: 'resize',
     fx: () => {
-        const win = remote.getCurrentWindow();
-        if (win.isMaximized()) {
-            GetElement('maximize-icon').src = './icons/window/restore.svg';
-        } else {
-            GetElement('maximize-icon').src = './icons/window/maximize.svg';
-        }
+        RefreshWindowState();
     }
 });
+const RefreshWindowState = () => {
+    const win = remote.getCurrentWindow();
+    const maximizeIcon = GetElement('maximize-icon');
+    if (win.isMaximized()) {
+        maximizeIcon.src = './icons/window/restore.svg';
+    } else {
+        maximizeIcon.src = './icons/window/maximize.svg';
+    }
+}
