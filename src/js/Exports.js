@@ -22,3 +22,11 @@ const SetDocumentTitle = (title) => {
     document.title = title;
     SetInner('text', 'window-title', title);
 };
+const AddListener = (id, event, callback) => {
+    const element = GetElement(id);
+    if (element) {
+        element.addEventListener(event, callback);
+    } else {
+        throw new TypeError(`Element with id ${id} not found.`);
+    }
+}
