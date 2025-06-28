@@ -20,12 +20,12 @@ const UpdateListing = async () => {
     });
 }
 
-UpdateListing();
-
 AddListener({
     id: 'source',
     event: 'click',
     fx: () => {
-        // Later
+        GetElement('modal-blackout').style.display = 'flex';
+        UpdateListing();
+        GetElement('source-selector').style.display = 'block';
     }
 });
