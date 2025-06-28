@@ -23,11 +23,13 @@ const SetDocumentTitle = (title) => {
     SetInner('text', 'window-title', title);
 };
 const AddListener = ({id: id, event: event, fx: callback}) => {
-    console.log(`Adding listener for ${event} on element with id ${id}`);
     const element = GetElement(id);
     if (element) {
         element.addEventListener(event, callback);
     } else {
         throw new TypeError(`Element with id ${id} not found.`);
     }
+}
+const AddGlobalListener = ({event: event, fx: callback}) => {
+    document.addEventListener(event, callback);
 }
