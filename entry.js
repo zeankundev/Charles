@@ -2,7 +2,7 @@ const { app, BrowserWindow } = require('electron');
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 800,
+        width: 1024,
         height: 600,
         webPreferences: {
             nodeIntegration: true,
@@ -16,7 +16,7 @@ function createWindow() {
 
     win.loadFile('src/index.html');
     try {
-        require('electron-reloader')
+        require('electron-reloader')(module)
     }catch{}
 }
 
