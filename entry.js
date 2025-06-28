@@ -17,6 +17,8 @@ function createWindow() {
     });
 
     win.loadFile('src/index.html');
+    require('@electron/remote/main').initialize()
+    require('@electron/remote/main').enable(win.webContents);
     try {
         require('electron-reloader')(module)
     }catch{}

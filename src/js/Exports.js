@@ -22,7 +22,8 @@ const SetDocumentTitle = (title) => {
     document.title = title;
     SetInner('text', 'window-title', title);
 };
-const AddListener = (id, event, callback) => {
+const AddListener = ({id: id, event: event, fx: callback}) => {
+    console.log(`Adding listener for ${event} on element with id ${id}`);
     const element = GetElement(id);
     if (element) {
         element.addEventListener(event, callback);
