@@ -52,8 +52,11 @@ const Start = async (id) => {
         dumped_id = '';
         dumped_id = id;
         video_stream.getTracks().forEach(track => track.stop());
-        renderer.pause();
         clearInterval(intervalId);
+        isCapturing = false;
+        isStreaming = false;
+        renderer.remove();
+        renderer = null;
     } else {
         dumped_id = id;
     }
@@ -90,23 +93,29 @@ const Start = async (id) => {
         intervalId = setInterval(() => {
             Update();
         }, 1000 / 60);
-        AddListener({
-            id: 'play',
-            event: 'click',
-            fx: () => {
-                if (isStreaming) {
-                    renderer.pause();
-                    isStreaming = false;
-                    GetElement('play-icon').src = './icons/media/play.svg';
-                    GetElement('play').title = 'Play';
-                } else {
-                    renderer.play();
-                    isStreaming = true;
-                    GetElement('play-icon').src = './icons/media/pause.svg';
-                    GetElement('play').title = 'Pause';
-                }
+        const playButton = GetElement('play');
+        const newPlayHandler = () => {
+            console.log('Play/Pause clicked');
+            console.log('Renderer paused:', renderer.paused);
+            if (renderer.paused) {
+                renderer.play();
+                isStreaming = true;
+                GetElement('play-icon').src = './icons/media/pause.svg';
+                GetElement('play').title = 'Pause';
+                intervalId = setInterval(() => {
+                    Update();
+                }, 1000 / 60);
+            } else {
+                renderer.pause();
+                clearInterval(intervalId);
+                isStreaming = false;
+                GetElement('play-icon').src = './icons/media/play.svg';
+                GetElement('play').title = 'Play';
             }
-        });
+        };
+        const playButtonClone = playButton.cloneNode(true);
+        playButton.parentNode.replaceChild(playButtonClone, playButton);
+        playButtonClone.addEventListener('click', newPlayHandler);
     } catch (e) {
         console.error('Error starting capture:', e);
         isCapturing = false;
