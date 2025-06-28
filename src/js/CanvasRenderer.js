@@ -90,6 +90,50 @@ const Start = async (id) => {
 const Update = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(renderer, 0, 0, canvas.width, canvas.height);
+
+}
+const RenderOverlay = (data) => {
+    if (!data || data.length === 0) return;
+    data.forEach((element) => {
+        if (element.type === "rectangle") {
+            DrawRect(ctx, {
+                top: element.posy,
+                left: element.posx,
+                width: element.sizex,
+                height: element.sizey,
+                fill: element.color,
+                round: 15
+            });
+        } else if (element.type === "text") {
+            ctx.font = `${element.fontWeight} ${element.fontSize}pt ${element.fontFamily}`;
+            ctx.fillStyle = element.color;
+            ctx.fillText(element.text, element.posx, element.posy);
+        } else if (element.type === "image") {
+            const img = new Image();
+            img.src = element.content;
+            ctx.drawImage(img, element.posx, element.posy, element.sizex, element.sizey);
+        }
+    });
+}
+const DrawRect = (CanvasCTX, {top: y, left: x, width: w, height: h, fill: f, round: r}) => {
+    CanvasCTX.save();
+    CanvasCTX.fillStyle = f;
+    if(r && r > 0) {
+      if (w < 2 * r) r = w / 2;
+      if (h < 2 * r) r = h / 2;
+      CanvasCTX.beginPath();
+      CanvasCTX.moveTo(x + r, y);
+      CanvasCTX.arcTo(x + w, y, x + w, y + h, r);
+      CanvasCTX.arcTo(x + w, y + h, x, y + h, r);
+      CanvasCTX.arcTo(x, y + h, x, y, r);
+      CanvasCTX.arcTo(x, y, x + w, y, r);
+      CanvasCTX.closePath();
+      CanvasCTX.fill();
+    } else {
+      CanvasCTX.fillRect(x, y, w, h);
+    }
+    CanvasCTX.restore();
+    console.log('Drew called')
 }
 const UpdateListing = async () => {
     const sources = await capturer.getSources({ types: ['screen', 'window'] });
