@@ -89,6 +89,10 @@ body {
     width: 50%;
     height: 50%;
     background-color: #fff;
+    border-radius: 10px;
+    position: relative;
+    left: -3.5%;
+    right: -3.5%;
 }
 .broadcast-controller {
     background-color: var(--secondary);
@@ -101,5 +105,23 @@ body {
     outline: 1px solid var(--tertiary);
     box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.5);
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    z-index: 99999;
+}
+.control-button {
+    -webkit-appearance: none;
+    width: 28px;
+    height: 28px;
+    background-color: var(--secondary);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+.control-button:hover {
+    background-color: var(--tertiary);
 }
