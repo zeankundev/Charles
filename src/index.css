@@ -173,7 +173,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, auto);
-    gap: 10px;
+    gap: 8px;
     max-height: 350px;
     overflow-y: auto;
     word-wrap: break-word;
@@ -183,6 +183,8 @@ body {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    border: 1px solid var(--tertiary);
-    border-radius: 5px;
+    background-color: var(--primary);
+    border: 2px solid var(--tertiary);
+    border-radius: 10px;
+    cursor: pointer;
 }
