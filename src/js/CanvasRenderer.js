@@ -91,7 +91,6 @@ const Update = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(renderer, 0, 0, canvas.width, canvas.height);
 }
-
 const UpdateListing = async () => {
     const sources = await capturer.getSources({ types: ['screen', 'window'] });
     const inputSources = document.getElementById('input-sources');
