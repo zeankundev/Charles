@@ -33,3 +33,5 @@ const RefreshWindowState = () => {
         maximizeIcon.src = './icons/window/maximize.svg';
     }
 }
+remote.getCurrentWindow().on('maximize', RefreshWindowState);
+remote.getCurrentWindow().on('unmaximize', RefreshWindowState);
