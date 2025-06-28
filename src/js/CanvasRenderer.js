@@ -19,7 +19,10 @@ const UpdateListing = async () => {
         inputSources.appendChild(sourceButton);
     });
 }
-
+const CloseSelector = () => {
+    GetElement('modal-blackout').style.display = 'none';
+    GetElement('source-selector').style.display = 'none';
+}
 AddListener({
     id: 'source',
     event: 'click',
@@ -27,5 +30,12 @@ AddListener({
         GetElement('modal-blackout').style.display = 'flex';
         UpdateListing();
         GetElement('source-selector').style.display = 'block';
+    }
+});
+AddListener({
+    id: 'close-source',
+    event: 'click',
+    fx: () => {
+        CloseSelector();
     }
 });
