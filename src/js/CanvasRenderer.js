@@ -20,10 +20,12 @@ const UpdateListing = async () => {
     });
 }
 
+UpdateListing();
+
 AddListener({
     id: 'source',
     event: 'click',
     fx: () => {
-        
+        // Later
     }
 });
