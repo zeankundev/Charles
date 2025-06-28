@@ -75,6 +75,9 @@ body {
 .window-button:hover {
     background-color: var(--tertiary);
 }
+.window-button:hover.close {
+    background-color: var(--accent);
+}
 .window-button img {
     width: 16px;
     height: 16px;
