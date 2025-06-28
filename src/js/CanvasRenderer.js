@@ -10,6 +10,35 @@ let renderer;
 let ctx;
 let intervalId;
 let isStreaming;
+
+const test_data = [
+    {
+      "type": "rectangle",
+      "posx": 244,
+      "posy": 300,
+      "sizex": 200,
+      "sizey": 200,
+      "color": "#ffffff"
+    },
+    {
+      "type": "text",
+      "posx": 400,
+      "posy": 300,
+      "fontSize": 24,
+      "fontFamily": "'Segoe UI'",
+      "fontWeight": "bold",
+      "text": "Hello World!",
+      "color": "#ffffff"
+    },
+    {
+      "type": "image",
+      "posx": 600,
+      "posy": 500,
+      "sizex": 200,
+      "sizey": 200,
+      "content": "../build/icons/512x512.png"
+    }
+]
 const Start = async (id) => {
     CloseSelector();
     isStreaming = true;
@@ -90,7 +119,7 @@ const Start = async (id) => {
 const Update = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(renderer, 0, 0, canvas.width, canvas.height);
-
+    RenderOverlay(test_data);
 }
 const RenderOverlay = (data) => {
     if (!data || data.length === 0) return;
