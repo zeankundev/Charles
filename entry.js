@@ -10,7 +10,8 @@ function createWindow() {
         },
         autoHideMenuBar: true,
         titleBarStyle: 'hidden',
-        frame: false
+        frame: false,
+        icon: require('path').join(__dirname, 'build/icons', '256x256.png'),
     });
 
     win.loadFile('src/index.html');
