@@ -81,25 +81,23 @@ body {
 }
 .canvas-container {
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    justify-content: center; /* Center horizontally */
+    align-items: center;   /* Center vertically */
     margin-top: 20px;
+    position: relative; /* Add this to make it a positioning context for absolute children */
 }
 .canvas-container canvas {
     width: 50%;
     height: 50%;
     background-color: #fff;
     border-radius: 10px;
-    position: relative;
-    left: -3.5%;
-    right: -3.5%;
 }
 .broadcast-controller {
     background-color: var(--secondary);
-    position: relative;
+    position: absolute; /* Change to absolute */
     bottom: 20px;
-    left: 25%;
-    right: 25%;
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%); /* Adjust for its own width to truly center */
     padding: 5px;
     border-radius: 10px;
     outline: 1px solid var(--tertiary);
