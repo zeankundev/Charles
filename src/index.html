@@ -25,6 +25,14 @@
                 </button>
             </div>
         </div>
+        <div class="modal-blackout">
+            <div class="modal" id="source-selector">
+                <span class="mini-header">Choose Input Source</span>
+                <div id="input-sources"></div>
+                <br>
+                <button>Close</button>
+            </div>
+        </div>
         <div class="main-content">
             <div class="top-content">
                 <div class="canvas-container">
@@ -48,7 +56,7 @@
         </div>
         <!-- Just using an efficient loader so we only need to define once -->
         <script>
-            var modules = ['Exports','WindowManager'];
+            var modules = ['Exports','WindowManager','CanvasRenderer'];
             const LoadModules = () => {
                 if (modules.length > 0) {
                     modules.forEach(module => {
