@@ -1,6 +1,21 @@
 const capturer = remote.desktopCapturer;
 const charCut = 20;
-const Start = (id) => {}
+let selectedSource = null;
+let isCapturing = false;
+let lastTime = 0;
+let lastFrame = 0;
+
+let video_stream;
+let renderer;
+let ctx;
+let intervalId;
+let isStreaming;
+const Start = (id) => {
+    CloseSelector();
+    isStreaming = true;
+    SetDocumentTitle(`${id} • Charles`);
+    var id = '';
+}
 const Update = () => {}
 
 const UpdateListing = async () => {
