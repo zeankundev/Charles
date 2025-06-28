@@ -18,6 +18,13 @@ AddListener({
         RefreshWindowState();
     }
 });
+AddListener({
+    id: 'close',
+    event: 'click',
+    fx: () => {
+        remote.getCurrentWindow().close();
+    }
+});
 AddGlobalListener({
     event: 'resize',
     fx: () => {
