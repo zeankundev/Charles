@@ -48,3 +48,28 @@ body {
 .window-bar .left-windowbar span {
     font-weight: 700;
 }
+.window-bar .right-windowbar {
+    display: flex;
+    align-items: center;
+    margin-right: 7px;
+}
+.window-button {
+    -webkit-appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    width: 28px;
+    height: 28px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+.window-button:hover {
+    background-color: var(--tertiary);
+}
+.window-button img {
+    width: 16px;
+    height: 16px;
+}
