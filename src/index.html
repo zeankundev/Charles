@@ -7,17 +7,20 @@
         <link rel="stylesheet" href="./index.css">
         <!-- Just using an efficient loader so we only need to define once -->
         <script>
-            modules = [];
-            if (modules.length > 0) {
-                modules.forEach(module => {
-                    const script = document.createElement('script');
-                    script.src = `./js/${module}.js`;
-                    script.type = 'module';
-                    document.head.appendChild(script);
-                });
-            } else {
-                console.warn("No modules to load.");
+            var modules = [];
+            const LoadModules = () => {
+                if (modules.length > 0) {
+                    modules.forEach(module => {
+                        const script = document.createElement('script');
+                        script.src = `./js/${module}.js`;
+                        script.type = 'module';
+                        document.head.appendChild(script);
+                    });
+                } else {
+                    console.warn("No modules to load.");
+                }
             }
+            LoadModules();
         </script>
     </head>
     <body>
@@ -37,6 +40,16 @@
                 <button class="window-button close" title="Close">
                     <img src="./icons/window/close.svg" alt="Close">
                 </button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="top-content">
+                <div class="canvas-container">
+                    <div class="broadcast-controller">
+                        <span>a</span>
+                    </div>
+                    <canvas id="canvas" width="1024" height="600"></canvas>
+                </div>
             </div>
         </div>
     </body>
