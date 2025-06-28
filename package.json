@@ -1,0 +1,10 @@
+{
+  "name": "charles",
+  "version": "0.5.0",
+  "description": "a simple streaming app",
+  "main": "entry.js",
+  "repository": "https://github.com/zeankundev/Charles",
+  "author": "zeankun <zeanfender11@gmail.com>",
+  "license": "AGPL-3.0",
+  "private": false
+}
