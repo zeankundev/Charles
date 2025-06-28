@@ -108,8 +108,9 @@ body {
 .canvas-container canvas {
     width: 50%;
     height: 50%;
-    background-color: #fff;
+    background-color: #000;
     border-radius: 10px;
+    border: 1.5px solid var(--tertiary);
 }
 .broadcast-controller {
     background-color: var(--secondary);

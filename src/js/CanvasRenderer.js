@@ -10,13 +10,63 @@ let renderer;
 let ctx;
 let intervalId;
 let isStreaming;
-const Start = (id) => {
+const Start = async (id) => {
     CloseSelector();
     isStreaming = true;
     SetDocumentTitle(`${id} • Charles`);
-    var id = '';
+    var dumped_id = '';
+    if (id == null || id == undefined || id == '') {
+        console.error('Screen source not selected');
+        return;
+    }
+    if (isCapturing == true) {
+        dumped_id = '';
+        dumped_id = id;
+        video_stream.getTracks().forEach(track => track.stop());
+        renderer.pause();
+        clearInterval(intervalId);
+    } else {
+        dumped_id = id;
+    }
+    isCapturing = true;
+    try {
+        video_stream = await navigator.mediaDevices.getUserMedia({
+            audio: {
+                mandatory: {
+                    chromeMediaSource: 'desktop'
+                }
+            },
+            video: {
+                mandatory: {
+                    chromeMediaSource: 'desktop',
+                    chromeMediaSourceId: dumped_id,
+                    minWidth: 960,
+                    maxWidth: 2560,
+                    minHeight: 480,
+                    maxHeight: 1440,
+                    frameRate: {
+                        ideal: 45,
+                        max: 240
+                    }
+                }
+            }
+        })
+        renderer = document.createElement('video');
+        renderer.srcObject = video_stream;
+        renderer.muted = true;
+        renderer.play();
+        ctx = canvas.getContext('2d');
+        intervalId = setInterval(() => {
+            Update();
+        }, 1000 / 60);
+    } catch (e) {
+
+    }
 }
-const Update = () => {}
+const Update = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(renderer, 0, 0, canvas.width, canvas.height);
+}
 
 const UpdateListing = async () => {
     const sources = await capturer.getSources({ types: ['screen', 'window'] });
